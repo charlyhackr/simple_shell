@@ -1,6 +1,7 @@
 #include "head.h"
 
-int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **environ)
+int funcionpath(char *pathfinal, char *path,
+ int tam, char **comando, char **environ)
 {
         int cont = 0;
         int igual = 5;
@@ -69,5 +70,5 @@ void SigintHandler(int sigint)
 {
         (void) sigint;
         signal (SIGINT, SigintHandler);
-        fflush(stdout);
+        _printf("\n$ ");
 }
