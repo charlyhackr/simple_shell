@@ -58,7 +58,6 @@ int main(void)
 
 		if((bytesleidos = getline(&linea, &numbytes, stdin) == EOF))
 		{
-			printf("hola\n");
 			exit(0);
 		}
 		if (linea[tamanio(linea) - 1] != '\n')
