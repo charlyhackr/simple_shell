@@ -1,8 +1,6 @@
 #include "head.h"
 void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **environ, int cont)
 {
-        int ojo = 0;
-	char *raya = "/";
         pid = fork();
         if (pid == 0)
         {
@@ -12,12 +10,7 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                         exit(0);
                 }
                 guardarargumentos(linea, argumentos);
-		if(argumentos[0][0] == raya[0])
-			execve(argumentos[0], argumentos,environ);
                 _path(argumentos,environ, num, cont);
-                ojo = execve(argumentos[0], argumentos,environ);
-                if (ojo == -1)
-			__printf("sh: %d: %s: not found\n", cont, argumentos[0]);
                 free(linea);
                 _free(argumentos,num);
                 exit(127);
@@ -33,10 +26,9 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
 int main(void)
 {
         size_t numbytes = 0;
-        ssize_t bytesleidos = 0;
-
+        int bytesleidos = 0;
+	int a = 0;
         char *linea = NULL;
-
         char **argumentos = NULL;
         char *separador = " ";
         unsigned int num = 0;
@@ -53,11 +45,20 @@ int main(void)
                         perror("Error:");
                         exit(0);
                 }
+		if (a != 0)
+		{
+			exit (0);
+		}
                 if (isatty(STDIN_FILENO))
                         _printf("$ ");
 
 		if((bytesleidos = getline(&linea, &numbytes, stdin) == EOF))
+		{
+			printf("hola\n");
 			exit(0);
+		}
+		if (linea[tamanio(linea) - 1] != '\n')
+			a = 1;
 		quitarsalto(linea);
 		num = numerotokens(linea,separador);
 		if(comparar(linea) == 1)

@@ -7,8 +7,8 @@ int comparar(char *linea)
 	int count2 = 0;
 	char *puntero2 = linea;
 	char *exit = "exit";
-/*	int i = tamanio(exit);
- */
+	int tam = tamanio(exit);
+
 	if (puntero2[0] == '\0')
 		return(0);
 
@@ -25,6 +25,8 @@ int comparar(char *linea)
 		count++;
 		count2++;
 	}
-
+	if (count2 == tam)
 	return (1);
+	else
+		return(0);
 }

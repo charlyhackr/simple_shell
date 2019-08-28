@@ -19,7 +19,7 @@ int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **env
                 }
         }
         else
-                execve(comando[0],comando, environ);
+                execve(comando[0],comando, NULL);
 	return (0);
 }
 int search_env(char **argumentos, char **environ)
@@ -63,16 +63,6 @@ int comparar_env(char *comando)
 
         return (1);
 }
-void funcion(char **arg,int num)
-{
-        int a = 0;
-        while(a < num)
-        {
-                _printf("%s\n", arg[a]);
-                a++;
-        }
-}
-
 void SigintHandler(int sigint)
 {
         (void) sigint;

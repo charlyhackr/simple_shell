@@ -84,7 +84,8 @@ char quitarsalto(char *linea)
 {
 
         int ta = tamanio(linea);
-        linea[ta - 1] = '\0';
+	if (linea[ta - 1] == '\n')
+		linea[ta - 1] = '\0';
 
         return(*linea);
 }
