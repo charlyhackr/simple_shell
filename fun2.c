@@ -1,15 +1,16 @@
 #include "head.h"
 
-int guardarargumentos2(char *linea, char *argumentos[], char *comando)
+void guardarargumentos2(char *linea, char *argumentos[], char *comando)
 {
         unsigned int cont = 0;
         unsigned int cont2 = 0;
-        unsigned int cont3 = 1;
+        unsigned int cont3 = 0;
         unsigned int cont4 = 0;
         unsigned int cont5 = 0;
         unsigned int cont6 = 0;
+	unsigned int cont7 = 0;
+	unsigned int hola = 0;
         unsigned  int tam = tamanio(comando);
-
 
         while (linea[cont])
         {
@@ -19,11 +20,17 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
 			cont2++;
                         cont3++;
                 }
-                argumentos[cont] = malloc((sizeof(char) * (cont3 + tam + 2)));
-                if (argumentos == NULL)
+                argumentos[cont] = malloc((sizeof(char)) * (cont3 + tam + 2));
+                if (argumentos[cont] == NULL)
                 {
                         exit(0);
                 }
+		hola = (cont3 + tam + 2);
+		while(cont7 < hola)
+		{
+			argumentos[cont][cont7] = 0;
+			cont7++;
+		} 
                 while(linea[cont5] != 58 && linea[cont5] != '\0')
                 {
 
@@ -33,15 +40,13 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
                 }
                 argumentos[cont][cont4] = '/';
                 cont4++;
-                while(comando[cont6])
+                while(comando[cont6] != '\0')
                 {
                         argumentos[cont][cont4] = comando[cont6];
                         cont4++;
                         cont6++;
                 }
-
 		argumentos[cont][cont4] = '\0';
-
                 if(!linea[cont5])
                         break;
                 cont++;
@@ -52,8 +57,7 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
                 cont6 = 0;
 
         }
-        argumentos[cont+1] = NULL;
-	return (1);
+        argumentos[cont + 1] = NULL;
 }
 int concadenar(char *path, char **comando, char **environ, int cont)
 {
@@ -64,11 +68,15 @@ int concadenar(char *path, char **comando, char **environ, int cont)
         unsigned int num = numerotokens(path, separador);
         unsigned int i = 0;
         unsigned int a = 0;
+	unsigned int b = 0;
         struct stat ojo;
 
-        pathfinal = malloc(sizeof(char) * tampath - 4);
+        pathfinal = malloc(sizeof(char) * tampath - 3);
         if (pathfinal == NULL)
                 return(-1);
+	for (b = 0; b < (tampath - 3);++b)
+		pathfinal[b] = '\0';
+
         funcionpath(pathfinal, path, tampath, comando, environ);
 	paths = malloc(sizeof(char *) * (num + 1));
         if (paths == NULL)
@@ -83,7 +91,7 @@ int concadenar(char *path, char **comando, char **environ, int cont)
                 a++;
         }
         __printf("sh: %d: %s: not found\n", cont, comando[0]);
-      _free(paths, a);
+	_free(paths, a);
         free(pathfinal);
         exit(127);
 }
@@ -105,14 +113,13 @@ void _path(char **argumentos, char **environ, int numtokens, int cont)
         {
                 path = search_env(argumentos, environ);
 		concadenar(environ[path], argumentos, environ, cont);
-
         }
 }
 int comparar_envi(char *comando)
 {
 
         unsigned int count = 0;
-        char *path = "/bin";
+        char *path = "/";
         unsigned int pat = tamanio(path);
 
         while(path[count])
