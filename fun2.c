@@ -1,6 +1,6 @@
 #include "head.h"
 
-int guardarargumentos2(char *linea, char *argumentos[], char *comando)
+void guardarargumentos2(char *linea, char *argumentos[], char *comando)
 {
         unsigned int cont = 0;
         unsigned int cont2 = 0;
@@ -9,7 +9,6 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
         unsigned int cont5 = 0;
         unsigned int cont6 = 0;
         unsigned  int tam = tamanio(comando);
-
 
         while (linea[cont])
         {
@@ -20,7 +19,7 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
                         cont3++;
                 }
                 argumentos[cont] = malloc((sizeof(char) * (cont3 + tam + 2)));
-                if (argumentos == NULL)
+                if (argumentos[cont] == NULL)
                 {
                         exit(0);
                 }
@@ -33,7 +32,7 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
                 }
                 argumentos[cont][cont4] = '/';
                 cont4++;
-                while(comando[cont6])
+                while(comando[cont6] != '\0')
                 {
                         argumentos[cont][cont4] = comando[cont6];
                         cont4++;
@@ -52,8 +51,7 @@ int guardarargumentos2(char *linea, char *argumentos[], char *comando)
                 cont6 = 0;
 
         }
-        argumentos[cont+1] = NULL;
-	return (1);
+        argumentos[cont + 1] = NULL;
 }
 int concadenar(char *path, char **comando, char **environ, int cont)
 {
@@ -83,7 +81,7 @@ int concadenar(char *path, char **comando, char **environ, int cont)
                 a++;
         }
         __printf("sh: %d: %s: not found\n", cont, comando[0]);
-      _free(paths, a);
+	_free(paths, a);
         free(pathfinal);
         exit(127);
 }
@@ -105,14 +103,13 @@ void _path(char **argumentos, char **environ, int numtokens, int cont)
         {
                 path = search_env(argumentos, environ);
 		concadenar(environ[path], argumentos, environ, cont);
-
         }
 }
 int comparar_envi(char *comando)
 {
 
         unsigned int count = 0;
-        char *path = "/bin";
+        char *path = "/";
         unsigned int pat = tamanio(path);
 
         while(path[count])

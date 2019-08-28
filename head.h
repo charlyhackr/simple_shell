@@ -18,7 +18,7 @@ void _path(char **argumentos, char **environ, int numtokens, int cont);
 int comparar_envi(char *comando);
 int concadenar(char *path, char **comando, char **environ, int cont);
 int separarpath(char *pathfinal, char *comando, char **paths);
-int guardarargumentos2(char *linea, char *argumentos[], char *comando);
+void guardarargumentos2(char *linea, char *argumentos[], char *comando);
 int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **environ);
 int search_env(char **argumentos, char **environ);
 int comparar_env(char *comando);

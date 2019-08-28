@@ -17,13 +17,13 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
 			__printf("sh: %d: %s: not found\n", cont, argumentos[0]);
                 free(linea);
                 _free(argumentos,num);
+		free(argumentos[num + 1]);
                 exit(127);
         }
         else
         {
                 wait(NULL);
         }
-
 
 }
 
@@ -41,7 +41,6 @@ int main(void)
         int cont = 1;
  	/*aqui la del control + c */
         signal(SIGINT, SigintHandler);
-	linea = malloc(sizeof(char) * (4096 * 2));
         while(1)
         {
                 if (pid == -1)

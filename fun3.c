@@ -8,7 +8,7 @@ int numerotokens(char *linea,char *separador)
         if(!linea[cont])
                 return(0);
 
-        while(linea[cont] == separador[0])
+        while(linea[cont] == separador[0] || linea[cont] == 9)
         {
                 cont++;
                 if(linea[cont] == '\0')
@@ -58,7 +58,7 @@ int guardarargumentos(char *linea, char *argumentos[])
                 {
                         cont5++;
                 }
-                while(linea[cont5] != 32 && linea[cont5] != '\0')
+                while((linea[cont5] != 32 && linea[cont5] != 9) && linea[cont5] != '\0')
                 {
 
                         argumentos[cont][cont4] = linea[cont5];
@@ -66,7 +66,7 @@ int guardarargumentos(char *linea, char *argumentos[])
                         cont4++;
                 }
                 argumentos[cont][cont4] = '\0';
-		while(linea[cont5] == 32)
+		while(linea[cont5] == 32 || linea[cont5] == 9)
                 {
                         cont5++;
                 }
@@ -78,6 +78,7 @@ int guardarargumentos(char *linea, char *argumentos[])
 
         }
         argumentos[cont+1] = NULL;
+	free(linea);
 	return (1);
 }
 char quitarsalto(char *linea)
