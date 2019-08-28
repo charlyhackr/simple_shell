@@ -102,3 +102,20 @@ int tamanio(char *linea)
         return (contador);
 
 }
+int penv(char **environ, char *comando)
+{
+	int a = 0;
+
+	if (comando[0] != 'e')
+		return (0);
+	if (comando[1] != 'n')
+		return (0);
+	if (comando[2] != 'v')
+		return (0);
+	while(environ[a])
+	{
+		_printf("%s\n",environ[a]);
+		a++;
+	}
+	return(1);
+}

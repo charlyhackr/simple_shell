@@ -36,5 +36,5 @@ int __withformat(char c, int count, va_list valist);
 int __printf(const char *format, ...);
 int __printstring(char *s);
 int __putchar(char c);
-
+int penv(char **environ, char *comando);
 #endif
