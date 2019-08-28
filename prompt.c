@@ -49,13 +49,13 @@ int main(void)
                         perror("Error:");
                         exit(0);
                 }
+	        if (isatty(STDIN_FILENO))
+                        _printf("$ ");
 		if (a != 0)
 		{
-			exit (0);
+			_printf("\n");
+			exit(0);
 		}
-                if (isatty(STDIN_FILENO))
-                        _printf("$ ");
-
 		if((bytesleidos = getline(&linea, &numbytes, stdin) == EOF))
 		{
 			exit(0);
