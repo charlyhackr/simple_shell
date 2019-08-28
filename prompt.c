@@ -15,9 +15,6 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                 ojo = execve(argumentos[0], argumentos,environ);
                 if (ojo == -1)
 			__printf("sh: %d: %s: not found\n", cont, argumentos[0]);
-                free(linea);
-                _free(argumentos,num);
-		free(argumentos[num + 1]);
                 exit(127);
         }
         else

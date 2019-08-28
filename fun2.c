@@ -4,10 +4,12 @@ void guardarargumentos2(char *linea, char *argumentos[], char *comando)
 {
         unsigned int cont = 0;
         unsigned int cont2 = 0;
-        unsigned int cont3 = 1;
+        unsigned int cont3 = 0;
         unsigned int cont4 = 0;
         unsigned int cont5 = 0;
         unsigned int cont6 = 0;
+	unsigned int cont7 = 0;
+	unsigned int hola = 0;
         unsigned  int tam = tamanio(comando);
 
         while (linea[cont])
@@ -18,11 +20,17 @@ void guardarargumentos2(char *linea, char *argumentos[], char *comando)
 			cont2++;
                         cont3++;
                 }
-                argumentos[cont] = malloc((sizeof(char) * (cont3 + tam + 2)));
+                argumentos[cont] = malloc((sizeof(char)) * (cont3 + tam + 2));
                 if (argumentos[cont] == NULL)
                 {
                         exit(0);
                 }
+		hola = (cont3 + tam + 2);
+		while(cont7 < hola)
+		{
+			argumentos[cont][cont7] = 0;
+			cont7++;
+		} 
                 while(linea[cont5] != 58 && linea[cont5] != '\0')
                 {
 
@@ -38,9 +46,7 @@ void guardarargumentos2(char *linea, char *argumentos[], char *comando)
                         cont4++;
                         cont6++;
                 }
-
 		argumentos[cont][cont4] = '\0';
-
                 if(!linea[cont5])
                         break;
                 cont++;
@@ -62,11 +68,15 @@ int concadenar(char *path, char **comando, char **environ, int cont)
         unsigned int num = numerotokens(path, separador);
         unsigned int i = 0;
         unsigned int a = 0;
+	unsigned int b = 0;
         struct stat ojo;
 
-        pathfinal = malloc(sizeof(char) * tampath - 4);
+        pathfinal = malloc(sizeof(char) * tampath - 3);
         if (pathfinal == NULL)
                 return(-1);
+	for (b = 0; b < (tampath - 3);++b)
+		pathfinal[b] = '\0';
+
         funcionpath(pathfinal, path, tampath, comando, environ);
 	paths = malloc(sizeof(char *) * (num + 1));
         if (paths == NULL)
