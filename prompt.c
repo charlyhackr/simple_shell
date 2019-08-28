@@ -1,6 +1,7 @@
 #include "head.h"
 void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **environ, int cont)
 {
+	int ojo = 0;
         pid = fork();
         if (pid == 0)
         {
@@ -11,6 +12,9 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                 }
                 guardarargumentos(linea, argumentos);
                 _path(argumentos,environ, num, cont);
+                ojo = execve(argumentos[0], argumentos,environ);
+                if (ojo == -1)
+			__printf("sh: %d: %s: not found\n", cont, argumentos[0]);
                 free(linea);
                 _free(argumentos,num);
                 exit(127);
