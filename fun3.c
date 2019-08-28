@@ -45,7 +45,7 @@ int guardarargumentos(char *linea, char *argumentos[])
                         cont2++;
                         cont3++;
                 }
-                while(linea[cont2] == 32)
+                while(linea[cont2] == 32 || linea[cont2] == 9)
                 {
                         cont2++;
                 }
@@ -54,7 +54,7 @@ int guardarargumentos(char *linea, char *argumentos[])
                 {
                         exit(0);
                 }
-                while(linea[cont5] == 32)
+                while(linea[cont5] == 32 || linea[cont5] == 9)
                 {
                         cont5++;
                 }
