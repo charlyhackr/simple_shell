@@ -11,6 +11,8 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                         exit(0);
                 }
                 guardarargumentos(linea, argumentos);
+		if(argumentos[0][0] == 46 && argumentos[0][1] == 47)
+			execve(argumentos[0], argumentos, environ);
                 _path(argumentos,environ, num, cont);
                 ojo = execve(argumentos[0], argumentos,environ);
                 if (ojo == -1)

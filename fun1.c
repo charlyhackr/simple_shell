@@ -5,6 +5,8 @@ int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **env
         int cont = 0;
         int igual = 5;
 
+	if(path[5] == 46 && path[6] == 47)
+		execve(comando[0],comando,environ);
         if(path[5] == 58)
         {
                 execve(comando[0],comando,environ);
