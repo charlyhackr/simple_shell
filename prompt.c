@@ -15,10 +15,10 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                 _path(argumentos,environ, num, cont);
                 ojo = execve(argumentos[0], argumentos,environ);
                 if (ojo == -1)
-                        _printf("sh: %d: %s: not found\n", cont, argumentos[0]);
+			__printf("sh: %d: %s: not found\n", cont, argumentos[0]);
                 free(linea);
                 _free(argumentos,num);
-                exit(0);
+                exit(127);
         }
         else
         {

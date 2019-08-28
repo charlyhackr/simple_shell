@@ -12,7 +12,7 @@ int print_number(int n)
 
 	if (n < 0)
 	{
-		_putchar('-');
+		__putchar('-');
 		n = n * -1;
 		count++;
 	}
@@ -28,7 +28,7 @@ int print_number(int n)
 		d = n / c;
 		n = n % c;
 		c = c / 10;
-		_putchar(d + '0');
+		__putchar(d + '0');
 		count++;
 	}
 	return (count);

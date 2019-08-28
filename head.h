@@ -32,6 +32,9 @@ int _printf(const char *format, ...);
 int print_number(int n);
 int _printstring(char *s);
 int _putchar(char c);
-
+int __withformat(char c, int count, va_list valist);
+int __printf(const char *format, ...);
+int __printstring(char *s);
+int __putchar(char c);
 
 #endif

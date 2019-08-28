@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-int _withformat(char c, int count, va_list valist)
+int __withformat(char c, int count, va_list valist)
 {
 	int j, i;
 	char *s;
@@ -15,14 +15,14 @@ int _withformat(char c, int count, va_list valist)
 		if (!s)
 		{
 			for (i = 0; si[i]; i++, count++)
-				_putchar(si[i]);
+				__putchar(si[i]);
 		}
 		else
-			count += _printstring(s);
+			count += __printstring(s);
 		break;
 	case 'd':
 		j = va_arg(valist, int);
-		
+
 		if (!j)
 		{
 			count++;
@@ -32,8 +32,8 @@ int _withformat(char c, int count, va_list valist)
 		break;
         default:
                 count += 2;
-                _putchar('%');
-                _putchar(c);
+                __putchar('%');
+                __putchar(c);
 	}
 	return (count);
 }
@@ -43,7 +43,7 @@ int _withformat(char c, int count, va_list valist)
  * @format: list of parameters passed
  * Return: @count the number of characters printed
  */
-int _printf(const char *format, ...)
+int __printf(const char *format, ...)
 {
 	int i = 0;
 	int count = 0;
@@ -58,12 +58,12 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			count++;
-			_putchar(format[i]);
+			__putchar(format[i]);
 		}
 		else if (format[i + 1])
 		{
 			i++;
-			count = _withformat(format[i], count, valist);
+			count = __withformat(format[i], count, valist);
 		}
 		else
 			return (-1);

@@ -82,13 +82,10 @@ int concadenar(char *path, char **comando, char **environ, int cont)
                         execve(paths[a], comando, environ);
                 a++;
         }
-	if(cont)
-	perror(comando[0]);
-/*
-        _printf("sh: %d: %s: not found\n", cont, comando[0]);
-*/      _free(paths, a);
+        __printf("sh: %d: %s: not found\n", cont, comando[0]);
+      _free(paths, a);
         free(pathfinal);
-        exit(0);
+        exit(127);
 }
 int separarpath(char *pathfinal, char *comando, char **paths)
 {
