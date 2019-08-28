@@ -19,7 +19,7 @@ int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **env
                 }
         }
         else
-                execve(comando[0],comando, NULL);
+                execve(comando[0],comando, environ);
 	return (0);
 }
 int search_env(char **argumentos, char **environ)
