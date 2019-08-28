@@ -2,7 +2,7 @@
 void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **environ, int cont)
 {
         int ojo = 0;
-
+	char *raya = "/";
         pid = fork();
         if (pid == 0)
         {
@@ -12,6 +12,8 @@ void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **envi
                         exit(0);
                 }
                 guardarargumentos(linea, argumentos);
+		if(argumentos[0][0] == raya[0])
+			execve(argumentos[0], argumentos,environ);
                 _path(argumentos,environ, num, cont);
                 ojo = execve(argumentos[0], argumentos,environ);
                 if (ojo == -1)
