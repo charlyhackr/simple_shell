@@ -41,7 +41,7 @@ int main(void)
         int cont = 1;
  	/*aqui la del control + c */
         signal(SIGINT, SigintHandler);
-
+	linea = malloc(sizeof(char) * (4096 * 2));
         while(1)
         {
                 if (pid == -1)
