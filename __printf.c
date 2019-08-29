@@ -2,12 +2,20 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+/**
+ * __withformat - fucntion for know format
+ * @c: string by format
+ * @count: integer counter
+ * @valist: structure va list
+ * Return: return to counter
+ */
+
 int __withformat(char c, int count, va_list valist)
 {
 	int j, i;
 	char *s;
 	char si[6] = "(null)";
-	
+
 	switch (c)
 	{
 	case 's':
@@ -30,16 +38,16 @@ int __withformat(char c, int count, va_list valist)
 		} else
 			count += print_number(j);
 		break;
-        default:
-                count += 2;
-                __putchar('%');
-                __putchar(c);
+	default:
+		count += 2;
+		__putchar('%');
+		__putchar(c);
 	}
 	return (count);
 }
 
 /**
- * _printf - Fuction that prints to the std output
+ * __printf - Fuction that prints to the std output
  * @format: list of parameters passed
  * Return: @count the number of characters printed
  */
