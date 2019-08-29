@@ -1,8 +1,8 @@
 #include "head.h"
 /**
- *_printstring - function that print a string
- *@s: pointer to value of each simbol of string
- *Return: counter.
+ * __printstring - function that print a string
+ * @s: pointer to value of each simbol of string
+ * Return: counter.
  */
 int __printstring(char *s)
 {
