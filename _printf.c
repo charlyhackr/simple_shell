@@ -2,12 +2,20 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+/**
+ * _withformat - function for format structure
+ * @c: string
+ * @count: integer counter
+ * @valist: date struture
+ * Return: counter
+ */
+
 int _withformat(char c, int count, va_list valist)
 {
 	int j, i;
 	char *s;
 	char si[6] = "(null)";
-	
+
 	switch (c)
 	{
 	case 's':
@@ -22,7 +30,7 @@ int _withformat(char c, int count, va_list valist)
 		break;
 	case 'd':
 		j = va_arg(valist, int);
-		
+
 		if (!j)
 		{
 			count++;
@@ -30,10 +38,10 @@ int _withformat(char c, int count, va_list valist)
 		} else
 			count += print_number(j);
 		break;
-        default:
-                count += 2;
-                _putchar('%');
-                _putchar(c);
+	default:
+		count += 2;
+		_putchar('%');
+		_putchar(c);
 	}
 	return (count);
 }
