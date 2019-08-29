@@ -11,19 +11,22 @@
 #include <signal.h>
 
 char quitarsalto(char *linea);
+extern char **environ;
 int tamanio(char *linea);
 int guardarargumentos(char *linea, char *argumentos[]);
-int numerotokens(char *linea,char *separador);
+int numerotokens(char *linea, char *separador);
 void _path(char **argumentos, char **environ, int numtokens, int cont);
 int comparar_envi(char *comando);
 int concadenar(char *path, char **comando, char **environ, int cont);
 int separarpath(char *pathfinal, char *comando, char **paths);
 void guardarargumentos2(char *linea, char *argumentos[], char *comando);
-int funcionpath(char *pathfinal, char *path, int tam, char **comando, char **environ);
+int funcionpath(char *pathfinal, char *path,
+int tam, char **comando, char **environ);
 int search_env(char **argumentos, char **environ);
 int comparar_env(char *comando);
 void SigintHandler(int sigint);
-void funcionmain(pid_t pid, char **argumentos, int num, char *linea, char **environ, int cont);
+void funcionmain(pid_t pid, char **argumentos,
+int num, char *linea, char **environ, int cont);
 int main(void);
 int comparar(char *linea);
 int _free(char **token, int tam);
