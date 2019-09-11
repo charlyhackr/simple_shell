@@ -3,7 +3,7 @@
 ![Julien Barbi alias mr Barbier](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg)
 
 ---
-### Description
+## Description
 Diego y Carlos's Shell is a simple UNIX command interpreter that replicates funtionalities of the simple shell. Additional functions are also included. THis program was written entirely in C as a project for HOlberton School.
 
 ### Installation
